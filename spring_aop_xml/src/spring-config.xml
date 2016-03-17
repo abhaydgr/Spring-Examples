@@ -11,10 +11,19 @@
            http://www.springframework.org/schema/context
 		   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	
-	<aop:aspectj-autoproxy/>
+	<bean id="personService" class="com.studytrails.tutorials.springaopxml.PersonService"/>
 	
-	<bean id="personService" class="com.studytrails.tutorials.springaopannotation.PersonService"/>
-	
-	<bean id="methodExecutionTimeAdvice" class="com.studytrails.tutorials.springaopannotation.MethodExecutionTimeAdvice"/>
+	<bean id="methodExecutionTimeAdvice" class="com.studytrails.tutorials.springaopxml.MethodExecutionTimeAdvice"/>
+
+	<aop:config>
+		<aop:aspect ref="methodExecutionTimeAdvice">
 		
+			<aop:pointcut  id="methodExecutionTimePointcut" 
+							expression="execution(* com.studytrails.tutorials.springaopxml.PersonService.addPerson(..))"/>
+			
+			<aop:around pointcut-ref="methodExecutionTimePointcut" 
+							method="calculateMethodExecutionTime(org.aspectj.lang.ProceedingJoinPoint)"/>
+		</aop:aspect>	
+	</aop:config>
+	 
 </beans>           
