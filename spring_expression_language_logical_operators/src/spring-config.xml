@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<bean id="markSheet"
+		class="com.studytrails.tutorials.springexpressionlanguagelogicaloperators.MarkSheet">
+		<property name="studentName" value="Alba" />
+		<property name="marksInMathematics" value="90" />
+		<property name="marksInPhysics" value="85" />
+		<property name="marksInChemistry" value="80" />
+	</bean>
+
+
+	<bean id="passedMessage" class="java.lang.String">
+		<constructor-arg value="Congratulations: You have passed!" />
+	</bean>
+
+	<bean id="failedMessage" class="java.lang.String">
+		<constructor-arg value="Sorry: You have failed." />
+	</bean>
+
+	<bean id="examinationResult"
+		class="com.studytrails.tutorials.springexpressionlanguagelogicaloperators.ExaminationResult">
+		<property name="hasPassed"
+			value="#{markSheet.marksInMathematics >= 40 
+											and markSheet.marksInPhysics >= 40 
+											and markSheet.marksInChemistry >= 40}" />
+		<property name="resultMessage"
+			value="#{markSheet.marksInMathematics >= 40 
+												and markSheet.marksInPhysics >= 40 
+												and markSheet.marksInChemistry >= 40
+												?passedMessage:failedMessage}" />
+	</bean>
+
+
+
+</beans>           

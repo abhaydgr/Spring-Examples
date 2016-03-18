@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<bean id="person"
+		class="com.studytrails.tutorials.springexpressionlanguageregularexpression.Person">
+		<property name="name" value="Alba" />
+		<property name="email" value="alba.bach@cmail.com"></property>
+	</bean>
+
+	<bean id="emailValidator"
+		class="com.studytrails.tutorials.springexpressionlanguageregularexpression.EmailValidator">
+		<property name="emailValid"
+			value="#{person.email matches '[\w]+.[\w]+@[\w]+.com'}" />
+	</bean>
+
+</beans>           

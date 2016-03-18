@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<bean id="student1"
+		class="com.studytrails.tutorials.springexpressionlanguageaccesslist.Student">
+		<property name="name" value="Zorro" />
+		<property name="marks" value="70" />
+	</bean>
+
+	<bean id="student2"
+		class="com.studytrails.tutorials.springexpressionlanguageaccesslist.Student">
+		<property name="name" value="Bach" />
+		<property name="marks" value="50" />
+	</bean>
+
+	<bean id="student3"
+		class="com.studytrails.tutorials.springexpressionlanguageaccesslist.Student">
+		<property name="name" value="Cindy" />
+		<property name="marks" value="30" />
+	</bean>
+
+	<bean id="student4"
+		class="com.studytrails.tutorials.springexpressionlanguageaccesslist.Student">
+		<property name="name" value="Alba" />
+		<property name="marks" value="80" />
+	</bean>
+
+	<bean id="student5"
+		class="com.studytrails.tutorials.springexpressionlanguageaccesslist.Student">
+		<property name="name" value="Danny" />
+		<property name="marks" value="20" />
+	</bean>
+
+	<bean id="studentList" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="student1" />
+				<ref bean="student2" />
+				<ref bean="student3" />
+				<ref bean="student4" />
+				<ref bean="student5" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="studentListAccessor"
+		class="com.studytrails.tutorials.springexpressionlanguageaccesslist.StudentListAccessor">
+		<property name="thirdStudentInList" value="#{studentList[2]}" />
+		<property name="failedStudents" value="#{studentList.?[marks lt 40]}" />
+		<property name="studentNames" value="#{studentList.![name]}" />
+	</bean>
+
+</beans>           
