@@ -10,7 +10,7 @@ public class TestInjectionMap {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 		TelephoneDirectory team= (TelephoneDirectory)context.getBean("telephoneDirectory");
-		System.out.println("The contents of the telephone directory are : " + team.getDirectoryMap());
+		System.out.println("The contents of the telephone directory are : " + TelephoneDirectory .getDirectoryMap());
 		
 		System.out.println("************** ENDING PROGRAM **************");
 	}
